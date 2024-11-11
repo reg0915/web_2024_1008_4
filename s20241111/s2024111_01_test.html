@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            height: 32vh;
+            background-color: lightblue;
+            margin: auto;
+            justify-content: space-between;
+        }
+
+        .item {
+
+            padding-top: 12vh;
+            width: 30%;
+            height: 30vh;
+            background-color: #ccc;
+            background-image: url("https://picsum.photos/300/200/?random=10");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .item1 {
+
+            padding-top: 12vh;
+            width: 30%;
+            height: 30vh;
+            background-color: #ccc;
+            background-image: url("https://picsum.photos/300/200/?random=10");
+            background-size: cover;
+            background-position: center;
+            align-items: flex-end;
+        }
+
+        .container-single {
+            display: flex;
+            justify-content: flex-start;
+            width: 80%;
+            margin: auto;
+            height: 32vh;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">1</div>
+    </div>
+
+    <div class="container">
+
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+    </div>
+    <div class="container-single">
+        <div class="item1">7</div>
+    </div>
+</body>
+
+</html>
