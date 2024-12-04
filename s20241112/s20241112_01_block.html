@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>訂購表單</title>
+    <style>
+        input[type="number"] {
+            color: lightblue;
+            width: 80px;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+
+        }
+
+        .box {
+            width: 95vw;
+
+            height: 100vh;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            margin: auto;
+            overflow-y: auto;
+            background-color: #FFF5E1;
+
+        }
+
+        .box2 {
+            width: 80vh;
+            height: 200px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            margin: 5px 0;
+            padding: 10px;
+        }
+
+
+
+        .image-box {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .image-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+
+
+        }
+
+        .item {
+            display: flex;
+
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        confirm-button {
+            display: block;
+            width: 100px;
+            margin: 20px auto 0;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+
+        .confirm-button:hover {
+            background-color: #45a049;
+        }
+
+        h1 {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+
+    <div class="box">
+        <h1>訂購表單</h1>
+
+        <form action="">
+
+            <div class="box2">
+
+
+                <p class="item">
+
+
+
+                    <img src="https://www.mcdelivery.com.tw/tw//static/1731400046551/assets/886/products/1105.png?"
+                        <label for="">雙層四盎司牛肉堡</label>
+                    <span class="price">NT$70</span>
+                    <input class="text-red" type="number" name="" id="" value="1">
+                </p>
+                <button class="confirm-button" type="button">訂購</button>
+            </div>
+            <br>
+            <div class="box2">
+
+
+                <p class="item">
+                    <img src="https://www.mcdelivery.com.tw/tw//static/1731400046551/assets/886/products/41322.png?"
+                        alt="">
+                    <label for="">嫩煎鷄腿堡</label>
+                    <span class="price">NT$50</span>
+                    <input class="text-red" type="number" name="" id="" value="1">
+                </p>
+                <button class="confirm-button" type="button">訂購</button>
+
+
+            </div>
+            <br>
+            <div class="box2">
+
+
+                <p class="item">
+                    <img src="https://www.mcdelivery.com.tw/tw//static/1731400046551/assets/886/products/31371.png?"
+                        alt="">
+                    <label for="">麥克鷄塊(6塊)</label>
+                    <span class="price">NT$50</span>
+                    <input class="text-red" type="number" name="" id="" value="1">
+                </p>
+                <button class="confirm-button" type="button">訂購</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
