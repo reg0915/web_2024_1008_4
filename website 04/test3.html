@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 定義圖片容器樣式 */
+        .container-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            /* 設定固定高度 */
+            overflow: hidden;
+            /* 隱藏超出範圍的圖片部分 */
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .container-image:hover .image {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .container-image:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            font-size: 16px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* 滑動時顯示的文字區域 */
+        .sticky-text-container {
+            position: sticky;
+            top: 20px;
+            /* 設定距離頁面頂部的距離 */
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* 半透明背景 */
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .sticky-text {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 class="text-center">產品介紹</h3>
+    <br>
+
+    <!-- 文字區域，會隨頁面滾動顯示 -->
+    <div class="sticky-text-container">
+        <p class="sticky-text">這是滑動時固定顯示的文字</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <div class="container-image">
+                <img src="https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Image" class="image">
+                <div class="overlay">
+                    <p class="text">This is a description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="container-image">
+                <img src="https://images.pexels.com/photos/2117937/pexels-photo-2117937.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Image" class="image">
+                <div class="overlay">
+                    <p class="text">This is a description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="container-image">
+                <img src="https://images.pexels.com/photos/247719/pexels-photo-247719.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Image" class="image">
+                <div class="overlay">
+                    <p class="text">This is a description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

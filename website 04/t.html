@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 設定圖片容器 */
+        .image-container {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 8px;
+            /* 圓角效果 */
+        }
+
+        /* 設定圖片樣式 */
+        .image {
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+            /* 圖片滑動效果 */
+        }
+
+        /* 設定覆蓋層 */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* 半透明背景 */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            /* 預設文字不可見 */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* 當滑鼠懸停時圖片效果 */
+        .image-container:hover .overlay {
+            opacity: 1;
+            /* 顯示文字 */
+        }
+
+        /* 限制圖片的最大高度 */
+        .image {
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .image-container.hovered .image {
+            transform: translateY(-20px);
+            /* 所有圖片向上滑動 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center gap-4">
+            <div class="col-3">
+                <div class="image-container">
+                    <img src="https://picsum.photos/id/20/1920/1024" alt="Image" class="image">
+                    <div class="overlay">
+                        <p class="text">This is a description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="image-container">
+                    <img src="https://picsum.photos/id/21/1920/1024" alt="Image" class="image">
+                    <div class="overlay">
+                        <p class="text">This is a description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="image-container">
+                    <img src="https://picsum.photos/id/22/1920/1024" alt="Image" class="image">
+                    <div class="overlay">
+                        <p class="text">This is a description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="image-container">
+                    <img src="https://picsum.photos/id/23/1920/1024" alt="Image" class="image">
+                    <div class="overlay">
+                        <p class="text">This is a description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 取得所有的圖片容器
+        const imageContainers = document.querySelectorAll('.image-container');
+
+        // 為每個圖片容器添加事件監聽器
+        imageContainers.forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                // 當鼠標移到某個容器上時，為所有容器添加 'hovered' 類
+                imageContainers.forEach(item => item.classList.add('hovered'));
+            });
+
+            container.addEventListener('mouseleave', () => {
+                // 當鼠標離開容器時，移除所有容器的 'hovered' 類
+                imageContainers.forEach(item => item.classList.remove('hovered'));
+            });
+        });
+    </script>
+</body>
+
+</html>
