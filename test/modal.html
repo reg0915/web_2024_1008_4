@@ -39,19 +39,58 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h1>my modal</h1>
+
+
+    <div class="container mt-3">
+        <h2>Basic Table</h2>
+        <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <button id="myBtn2" type="button" class="btn btn-success">+</button>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Doe</td>
+                    <td>
+                        <button id="myBtn1" type="button" class="btn btn-warning ">edit</button>
+                        <button type="button" class="btn btn-danger">del</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Moe</td>
+                    <td> <!-- 按鈕觸發第二個 modal -->
+                        <button id="myBtn1" type="button" class="btn btn-warning">edit</button>
+                        <button type="button" class="btn btn-danger">del</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Dooley</td>
+                    <td><!-- 按鈕觸發第三個 modal -->
+                        <button id="myBtn1" type="button" class="btn btn-warning">edit</button>
+                        <button type="button" class="btn btn-danger">del</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <!-- 按鈕觸發第一個 modal -->
-    <div class="container mt-3">
-        <button id="myBtn1" type="button" class="btn btn-primary">Open Modal 1</button>
-    </div>
 
-    <!-- 按鈕觸發第二個 modal -->
-    <div class="container mt-3">
-        <button id="myBtn2" type="button" class="btn btn-secondary">Open Modal 2</button>
-    </div>
+
+
+
+
+
 
 
 
