@@ -87,7 +87,7 @@
 
                     <p class="score">
                         分數<br>
-                        <span id="nowScore">168</span>
+                        <span id="nowScore">0</span>
                     </p>
                     <div class="container-box">
                         <div>
@@ -96,7 +96,7 @@
                         </div>
                         <div>
                             最高分數<br>
-                            <span id="hightScore">999</span>
+                            <span id="highScore">999</span>
                         </div>
                     </div>
 
@@ -135,26 +135,75 @@
 
 
             // 1.bind
-            const timer = $('#timer');
-            const highScore = $('#highScore');
             const nowScore = $('#nowScore');
+            const highScore = $('#highScore');
+            const timer = $('#timer');
             const startBtn = $('#startBtn');
             const shootBtn = $('#shootBtn');
             const resetBtn = $('#resetBtn');
 
+            let scoreVar = 0;
+            let scoreHighVar = 0;
+            let timeVar = 3;
+            let gameFlag = true;
+            nowScore.text(scoreVar);
+            highScore.text(scoreHighVar);
+            timer.text(timeVar);
+
+            shootBtn.hide();
+
             // 2.action
             startBtn.click(function (e) {
+                if (gameFlag == false) {
+                    console.log('gameFlag false', gameFlag);
+                    return false;
+                }
+                startBtn.hide();
+                shootBtn.show();
                 console.log('startBtn ok');
+                // timer -1 / sec / 開始 start 停止 0
+                const myInterval = setInterval(myTimer, 1000);
+                let tmpTime = timeVar;
+                function myTimer() {
+                    tmpTime = tmpTime - 1;
+                    if (tmpTime < 0) {
+                        gameFlag = false;
+                        clearInterval(myInterval);
+                        startBtn.show();
+                        shootBtn.hide();
+                    } else {
+                        timer.text(tmpTime);
+                    }
+
+                }
+                function myStop() {
+                    clearInterval(myInterval);
+                }
 
             });
 
             shootBtn.click(function (e) {
-                console.log('shootBtn ok');
+                if (gameFlag == false) {
+                    console.log('gameFlag false', gameFlag);
+                    return false;
+                }
+                scoreVar += 2;
+                nowScore.text(scoreVar);
             });
 
             resetBtn.click(function (e) {
                 console.log('resetBtn ok');
             });
+
+
+
+
+
+
+
+
+
+
 
 
 
