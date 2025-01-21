@@ -163,7 +163,7 @@
                 console.log('startBtn ok');
                 // timer -1 / sec / 開始 start 停止 0
                 const myInterval = setInterval(myTimer, 1000);
-                let tmpTime = timeVar;
+                tmpTime = timeVar;
                 function myTimer() {
                     tmpTime = tmpTime - 1;
                     if (tmpTime < 0) {
@@ -189,13 +189,13 @@
                 }
                 // 兩分球 31-60
                 // 三分球
-                console0.log('tmpTime', tmpTime);
+                console.log('tmpTime', tmpTime);
                 if (tmpTime <= 10) {
                     scoreVar += 3;
                 } else {
                     scoreVar += 2;
                 }
-                scoreVar += 2;
+
                 // time?
 
                 nowScore.text(scoreVar);
