@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投籃大賽</title>
+    <!-- link css 順序 1.bs 2.self -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .box1 {
+            border: 5px solid black;
+            margin: auto;
+            width: 80%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 15px;
+
+        }
+
+        .box2 {
+            margin: auto;
+            width: 80%;
+            /* height: 50vh; */
+            /* background-color: lightpink; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .box2 button:hover {
+            transform: scale(1.1);
+            /* 放大效果 */
+        }
+
+        span {
+            /* font-size: 60px; */
+        }
+
+        img {
+            /* width: 100%; */
+
+        }
+
+        .container-box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin: auto;
+            position: absolute;
+            top: 229px;
+            /* 距離父元素頂部 10px */
+            left: 37%;
+        }
+
+        .col-2 {
+            display: flex;
+            justify-content: center;
+            /* 水平置中圖片 */
+            align-items: center;
+            /* 垂直置中圖片 */
+        }
+
+        #ball {
+            position: absolute;
+            top: 47%;
+            /* 初始位置 */
+            left: 40%;
+            width: 50px;
+            height: 50px;
+            transition: all 2s ease-in-out;
+            z-index: 10;
+        }
+
+        #highScoreHistory {
+            width: 150px;
+            height: 250px;
+            margin-right: 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            top: 0px;
+        }
+
+        .ball-animation {
+            animation: throwBall 2s ease-in-out forwards;
+        }
+
+
+        /* 定義投籃動畫 */
+        @keyframes throwBall {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(300px, -400px) rotate(360deg);
+                /* 球的拋物線移動 */
+            }
+
+            100% {
+                transform: translate(500px, -100px) rotate(720deg);
+                /* 最後的終點位置 */
+            }
+        }
+
+        .container-box .clearHighScore {
+            margin-bottom: 20px;
+            display: flex;
+            position: absolute;
+            top: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container text-center mt-5">
+        <h2>投籃大賽</h2>
+        <hr>
+    </div>
+
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-2">
+                <img src="./images/cut.png" class="img-fluid" alt="" srcset="">
+            </div>
+            <div class="col-8">
+                <div class="box1">
+
+                    <div>
+                        <p class="score ">
+                            分數<br>
+                            <span id="nowScore">0</span>
+                        </p>
+                        <div class="container-box">
+                            <div>
+                                倒數計時<br>
+                                <span id="timer">60</span>
+                            </div>
+
+                            <div id="clearHighScore" class="">
+                                最高分數<br>
+                                <span id="highScore">999</span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="col-2">
+                <img src="./images/cut2.png" class="img-fluid" alt="" srcset="" id="ball"
+                    style="width: 200px;height: 200px;">
+                <img src="./images/ball.png" class="img-fluid" alt="" srcset=""
+                    style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%);width: 100px;">
+                <img src="./images/cap.png" class="img-fluid" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <div class="box2">
+            <button type="button" id="startBtn"
+                class="btn btn-info btn-lg">開&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;始</button>
+            <button type="button" id="shootBtn"
+                class="btn btn-info btn-lg">投&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;球</button>
+            <button type="button" id="resetBtn" class="btn btn-danger btn-lg">重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置
+
+            </button>
+        </div>
+        <hr>
+    </div>
+
+    <!-- js include 順序 1.bs 2.jq 3.self -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            // 1.bind
+            const nowScore = $('#nowScore');
+            const highScore = $('#highScore');
+            const timer = $('#timer');
+            const startBtn = $('#startBtn');
+            const shootBtn = $('#shootBtn');
+            const resetBtn = $('#resetBtn');
+            const clearHighScore = $('#clearHighScore');
+            const ball = $('#ball');
+
+
+            const highScoreHistoryContainer = $('<div id="highScoreHistory" class="mt-3"></div>');
+            clearHighScore.after(highScoreHistoryContainer);
+
+            let scoreVar = 0;
+
+            // 取得最高分數記錄 (預設為空陣列)
+            let highScoreHistory = JSON.parse(localStorage.getItem('highScoreHistory')) || [];
+            console.log('highScoreHistory', highScoreHistory);
+
+            let timeVar = 3;
+            let gameFlag = true;
+            let tmpTime = 0;
+
+            nowScore.text(scoreVar);
+            timer.text(timeVar);
+            shootBtn.hide();
+
+            // 初始化顯示最高分數和歷史記錄
+            updateHighScoreDisplay();
+
+            // 更新最高分數歷史記錄顯示
+            function updateHighScoreDisplay() {
+                // 如果有歷史分數，顯示前 5 高紀錄
+                highScoreHistoryContainer.html('<h5>最高分數紀錄</h5>');
+
+                // 確保陣列為整數並排序（由高至低），然後取前 5 筆
+                const sortedScores = highScoreHistory
+                    .map(score => Math.floor(score)) // 轉為整數
+                    .sort((a, b) => b - a)          // 由大到小排序
+                    .slice(0, 5);                   // 取前 5 筆
+
+                sortedScores.forEach((score, index) => {
+                    let scoreClass = '';  // 用來設定樣式
+                    if (index === 0) {
+                        scoreClass = 'text-danger'; // 對前三名的分數設定紅色
+                    }
+                    highScoreHistoryContainer.append(`<p class="${scoreClass}">${index + 1}. ${score}</p>`);
+                });
+
+                // 更新目前最高分數
+                highScore.text(sortedScores.length > 0 ? sortedScores[0] : 0);
+            }
+
+            // 2.action
+            startBtn.click(function (e) {
+                if (!gameFlag) {
+                    console.log('gameFlag false', gameFlag);
+                    return false;
+                }
+
+                startBtn.hide();
+                shootBtn.show();
+
+                const myInterval = setInterval(myTimer, 1000);
+                tmpTime = timeVar;
+
+                function myTimer() {
+                    tmpTime = tmpTime - 1;
+                    if (tmpTime < 0) {
+                        gameFlag = false;
+                        clearInterval(myInterval);
+                        startBtn.show();
+                        shootBtn.hide();
+
+                        // 遊戲結束時，更新最高分數記錄
+                        if (scoreVar > 0) {
+                            highScoreHistory.push(scoreVar);
+                            localStorage.setItem('highScoreHistory', JSON.stringify(highScoreHistory));
+                            updateHighScoreDisplay();
+                        }
+                    } else {
+                        timer.text(tmpTime);
+                    }
+                }
+            });
+
+            shootBtn.click(function (e) {
+                if (!gameFlag) {
+                    console.log('gameFlag false', gameFlag);
+                    return false;
+                }
+
+                // 為球添加動畫效果
+                ball.addClass('ball-animation');
+
+                // 當動畫結束時將球移回原位
+                ball.on('animationend', function () {
+                    ball.removeClass('ball-animation');
+                    ball.css({ top: '47%', left: '40%' });
+                });
+
+                if (tmpTime <= 10) {
+                    scoreVar += 3;
+                } else {
+                    scoreVar += 2;
+                }
+
+                nowScore.text(scoreVar);
+            });
+
+            resetBtn.click(function (e) {
+                tmpTime = 0;
+                timer.text(timeVar);
+                scoreVar = 0;
+                nowScore.text(scoreVar);
+                gameFlag = true;
+                ball.css({ top: '47%', left: '40%' }); // 重設球的位置
+            });
+
+            clearHighScore.click(function (e) {
+                // 清空最高分數記錄
+                localStorage.setItem('highScoreHistory', JSON.stringify([]));
+                highScoreHistory = [];
+                updateHighScoreDisplay();
+            });
+
+
+
+        });
+
+
+    </script>
+</body>
+
+</html>
