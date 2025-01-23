@@ -38,8 +38,14 @@
                 dataType: "Json",
                 success: function (res) {
                     console.log('res', res);
-                    let data = res.records.location[11];
+                    let data = res.records.location[11].locationName;
+                    data = res.records.location;
                     console.log('data', data);
+                    $.each(data, function (key, value) {
+                        console.log('key', key);
+                        console.log('key', value.locationName);
+                    });
+
                 }
 
             })
