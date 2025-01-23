@@ -16,6 +16,8 @@
 
 <body>
 
+
+
     <!-- js include 順序 1.bs 2.jq 3.self -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
         integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
@@ -30,6 +32,9 @@
             let pwd = pw;
             console.log('pwd', pwd);
 
+
+
+
             let url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${pwd}`;
             $.ajax({
                 type: "get",
@@ -39,18 +44,49 @@
                 success: function (res) {
                     console.log('res', res);
                     let data = res.records.location[11].locationName;
+                    // 第一步
                     data = res.records.location;
                     console.log('data', data);
+
+                    // 第二步
                     $.each(data, function (key, value) {
                         console.log('key', key);
                         console.log('key', value.locationName);
                     });
+
+
+
+
+
+
 
                 }
 
             })
 
         });
+
+        console.log('res', res);
+
+        // 抓取 location 資料
+        let data = res.records.location;
+
+        // 動態生成 Bootstrap 5 表格
+        let table = `
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Location Name</th>
+                <th>Weather Element</th>
+                <th>Time</th>
+                <th>Element Value</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+`;
 
 
     </script>
