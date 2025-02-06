@@ -9,31 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
         integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
 
-    </style>
+
 </head>
 
 <body>
 
+
     <div class="container mt-3">
-        <h2>Hover Rows</h2>
-        <p>The .table-hover class enables a hover state (grey background on mouse over) on table rows:</p>
+        <h2>天氣API 資料</h2>
+        <p>36小時天氣資訊</p>
         <table class="table table-hover" id="myTable">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td>1</td>
                     <td>新北市</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
+
 
     <!-- js include 順序 1.bs 2.jq 3.self -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
@@ -43,86 +46,84 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     <script src="../reg/pw.js"></script>
+    <!-- dataTabale -->
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script>
         $(document).ready(function () {
             let pwd = pw;
             console.log('pwd', pwd);
 
-            // bind
+            // 1.bind
             const myTable = $('#myTable');
+            const thTime1 = $('#th-time1');
+            const thTime2 = $('#th-time2');
+            const thTime3 = $('#th-time3');
             const myTbody = myTable.find('tbody');
             console.log('myTbody', myTbody);
 
 
-
+            // 2.action
 
             let url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${pwd}`;
             $.ajax({
                 type: "get",
                 url: url,
-                // data:"data",
+                // data: "data",
                 dataType: "Json",
                 success: function (res) {
                     console.log('res', res);
-                    let data = res.records.location[11].locationName;
-                    // 第一步
+                    let data = res.records.location[3].locationName;
                     data = res.records.location;
                     console.log('data', data);
 
-                    // 第二步
+
+
                     $.each(data, function (key, value) {
-                        console.log('key', key);
-                        console.log('value', value.locationName);
-
-
-                        // let tmpLocationName = value.locationName;
-                        // let tmpLocationID = key;
-
+                        // console.log('key', key);
+                        // console.log('value', value.locationName);
 
                         let tmpLocationName = value.locationName;
                         let tmpLocationID = key;
-                        let tmpWeatherElement = value.tmpWeatherElement;
-                        console.log('tmpWeatherElement', tmpWeatherElement);
-                        console.log('tmpWeatherElement[2]', tmpWeatherElement[2]);
 
-                        // 1.抓出地名
-                        console.log('tmpLocationName', tmpLocationName);
-
+                        // 1.地名
+                        // console.log('tmpLocationName', tmpLocationName);
 
                         // 2.table
-                        let temText =
-                            `
-                        <tr>
-                            <td>${tmpLocationID + 1}</td>
-                            <td>${tmpLocationName}</td>
-                            <td>${tmpLocationName}</td>
-
+                        let temText = `
+                            <tr>
+                                <td>${tmpLocationID + 1}</td>
+                                <td>${tmpLocationName}</td>
+                       
                             </tr>
-                            
-                            `;
-
+                        `;
 
                         $(myTbody).append(temText);
+
+
                     });
 
+
+                    // end.datatable
+                    $('#myTable').DataTable();
+
+                    // myTable.DataTable();
+
+                    // let table = new DataTable('#myTable', {
+                    //     // config options...
+                    // });
 
 
 
                 }
+            });
 
-            })
+
 
         });
-
-
-
-
-
-
     </script>
-
-
 </body>
 
 </html>

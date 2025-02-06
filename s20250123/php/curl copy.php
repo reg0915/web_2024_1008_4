@@ -17,9 +17,9 @@ $url = 'https://data.moenv.gov.tw/api/v2/gp_p_01?api_key=58d6040c-dca7-407f-a244
 //curl_setopt可以設定curl參數
 //設定url
 curl_setopt($ch , CURLOPT_URL , $url);
-// false顯示
-// true不顯示
-curl_setopt($ch, CURLOPT_USERAGENT, true);
+// false 顯示
+// true 不顯示
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 echo $result;
 
